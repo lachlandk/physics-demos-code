@@ -1,0 +1,38 @@
+* {
+    box-sizing:         border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+
+    margin: 0; /*to get rid of browsers applying margins by default (very silly)*/
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 60px;
+    color: #323232;
+}
+
+body {
+    background-color: #fa9600;
+}
+
+body>div {
+    margin: 50px;
+    text-align: center;
+}
+
+h1 button {
+    font-size: 40px;
+    margin: 20px;
+}
+
+.sorting-item {
+    display: inline-block;
+    margin: 10px;
+    width: 70px;
+}
+
+.selected {
+    background: #ff3d3c;
+}
+
+.set {
+    background: #007700 !important;
+}
