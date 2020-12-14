@@ -1,0 +1,57 @@
+* {
+	box-sizing:			border-box;
+	-webkit-box-sizing:	border-box;
+	-moz-box-sizing:	border-box;
+
+	margin: 0; /*to get rid of browsers applying margins by default (very silly)*/
+
+	font-family: "PT Mono", monospace;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#title {
+	font-family: "Zilla Slab Highlight", monospace;
+	margin: 10px 0;
+}
+
+#canvas-container {
+	height: 75%;
+	width: 90%;
+	position: relative;
+}
+
+#canvas-tooltip {
+	position: absolute;
+	top: 2px;
+	left: 5px;
+}
+
+#controls-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: flex-start;
+	margin: 10px 0;
+}
+
+.sub-controls-container {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	margin: 0 10px;
+}
+
+.sub-controls-container p, label, input {
+	margin: 5px 0;
+}
