@@ -1,2 +1,5 @@
 # Jetbrains IDE Settings
 .idea/
+
+# Repl.it
+.replit
