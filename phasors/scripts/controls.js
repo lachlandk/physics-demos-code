@@ -5,17 +5,6 @@ let osc_1_phasor = new Phasor("osc-1"),
 	osc_2_wave = new Wave("osc-2", osc_2_phasor),
 	resultant_wave = new ResultantWave();
 
-let phasors = [
-	osc_1_phasor,
-	osc_2_phasor,
-	resultant_phasor
-	],
-	waves = [
-		osc_1_wave,
-		osc_2_wave,
-		resultant_wave
-	];
-
 function osc_1_update(){
 	osc_1_phasor.update();
 	resultant_phasor.update();
@@ -60,18 +49,37 @@ function cancelAnimations(){
 	document.getElementById("stop-button").disabled = true;
 }
 
-window.addEventListener('resize', function(){
+let phasors = [
+		osc_1_phasor,
+		osc_2_phasor,
+		resultant_phasor
+	],
+	waves = [
+		osc_1_wave,
+		osc_2_wave,
+		resultant_wave
+	];
+
+window.addEventListener("resize", function(){
 	phasors.forEach(function(phasor){
-		phasor.dimensions = phasor.canvas.parentElement.offsetHeight * window.devicePixelRatio;
-		phasor.canvas.height = phasor.dimensions;
-		phasor.canvas.width = phasor.dimensions;
+		phasor.dimensions = phasor.phasor_canvas.parentElement.offsetHeight * window.devicePixelRatio;
+		phasor.phasor_canvas.height = phasor.dimensions;
+		phasor.phasor_canvas.width = phasor.dimensions;
+		phasor.axes_canvas.height = phasor.dimensions;
+		phasor.axes_canvas.width = phasor.dimensions;
 		phasor.phasor.scale(window.devicePixelRatio, window.devicePixelRatio);
+		phasor.axes.scale(window.devicePixelRatio, window.devicePixelRatio);
+		phasor.drawAxes();
 		phasor.update();
 	});
 	waves.forEach(function(wave){
-		wave.canvas.width = wave.canvas.parentElement.offsetWidth * window.devicePixelRatio;
-		wave.canvas.height = wave.canvas.parentElement.offsetHeight * window.devicePixelRatio;
+		wave.wave_canvas.width = wave.wave_canvas.parentElement.offsetWidth * window.devicePixelRatio;
+		wave.wave_canvas.height = wave.wave_canvas.parentElement.offsetHeight * window.devicePixelRatio;
+		wave.axes_canvas.width = wave.axes_canvas.parentElement.offsetWidth * window.devicePixelRatio;
+		wave.axes_canvas.height = wave.axes_canvas.parentElement.offsetHeight * window.devicePixelRatio;
 		wave.wave.scale(window.devicePixelRatio, window.devicePixelRatio);
+		wave.axes.scale(window.devicePixelRatio, window.devicePixelRatio);
+		wave.drawAxes();
 		wave.update();
 	})
 });

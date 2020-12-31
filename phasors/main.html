@@ -5,7 +5,7 @@
 	<!-- TODO: favicon -->
 	<title>Phasors Demo</title>
 	<link href="main.css" rel="stylesheet" type="text/css">
-<!--	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" type="text/css">-->
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="phasors-container">
@@ -22,7 +22,8 @@
 			</div>
 		</div>
 		<div class="phasor-canvas-container">
-			<canvas id="osc-1-phasor" class="phasor"></canvas>
+			<canvas id="osc-1-phasor-axes"></canvas>
+			<canvas id="osc-1-phasor"></canvas>
 		</div>
 	</div>
 	<div id="osc-2-phasor-container" class="phasor-container">
@@ -38,7 +39,8 @@
 			</div>
 		</div>
 		<div class="phasor-canvas-container">
-			<canvas id="osc-2-phasor" class="phasor"></canvas>
+			<canvas id="osc-2-phasor-axes"></canvas>
+			<canvas id="osc-2-phasor"></canvas>
 		</div>
 	</div>
 	<div id="resultant-phasor-container" class="phasor-container">
@@ -50,23 +52,27 @@
 			</div>
 		</div>
 		<div class="phasor-canvas-container">
-			<canvas id="resultant-phasor" class="phasor"></canvas>
+			<canvas id="resultant-phasor-axes"></canvas>
+			<canvas id="resultant-phasor"></canvas>
 		</div>
 	</div>
 </div>
 <div id="waves-container">
 	<div id="osc-1-wave-container" class="wave-container">
 		<div class="wave-canvas-container">
-			<canvas id="osc-1-wave" class="wave"></canvas>
+			<canvas id="osc-1-wave-axes"></canvas>
+			<canvas id="osc-1-wave"></canvas>
 		</div>
 	</div>
 	<div id="osc-2-wave-container" class="wave-container">
 		<div class="wave-canvas-container">
+			<canvas id="osc-2-wave-axes"></canvas>
 			<canvas id="osc-2-wave" class="wave"></canvas>
 		</div>
 	</div>
 	<div id="resultant-wave-container" class="wave-container">
 		<div class="wave-canvas-container">
+			<canvas id="resultant-wave-axes"></canvas>
 			<canvas id="resultant-wave" class="wave"></canvas>
 		</div>
 	</div>
@@ -78,8 +84,8 @@
 		<button type="button" id="stop-button" onclick="cancelAnimations();" disabled>Stop Animation</button>
 	</div>
 </div>
-<script src="phasor-graphs.js"></script>
-<script src="wave-graphs.js"></script>
-<script src="controls.js"></script>
+<script src="scripts/phasor-graphs.js"></script>
+<script src="scripts/wave-graphs.js"></script>
+<script src="scripts/controls.js"></script>
 </body>
 </html>
