@@ -42,6 +42,7 @@ body {
 	flex-flow: row nowrap;
 	align-items: flex-start;
 	margin: 10px 0;
+	position: relative;
 }
 
 .sub-controls-container {
@@ -54,4 +55,50 @@ body {
 
 .sub-controls-container p, label, input { /* vertical spacing between controls */
 	margin: 5px 0;
+}
+
+#github-link {
+	position: relative;
+	margin-left: auto;
+}
+
+#github-link:active {
+	top: 2px;
+}
+
+#github-link-tooltip {
+	font-family: sans-serif;
+	text-align: center;
+	background: #333;
+	color: white;
+	padding: 5px 5px;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 120%;
+	left: 50%;
+	width: 8em;
+	margin-left: -4em;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+#github-link-tooltip::after {
+	content: " ";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #333 transparent transparent transparent;
+}
+
+#github-link:hover #github-link-logo {
+	filter: invert(25%);
+}
+
+#github-link:hover #github-link-tooltip {
+	visibility: visible;
+	opacity: 1;
 }

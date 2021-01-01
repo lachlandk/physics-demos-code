@@ -9,7 +9,6 @@
 </head>
 <body>
 	<!--TODO: tooltips-->
-	<!--TODO: github link-->
 	<h1 id="title">Ray Optics Simulation</h1>
 	<div id="canvas-container">
 		<p id="canvas-tooltip">Drag the object or focal point to interact<br> with the simulation</p>
@@ -42,8 +41,22 @@
 			<p id="linear-magnification"></p>
 			<p id="image-type"></p>
 		</div>
+		<a id="github-link" href="https://github.com/lachlandk/physics-demos-code/tree/main/sorting-algorithm-simulator" target="_blank">
+			<p id="github-link-tooltip">View the source code on Github</p>
+			<img id="github-link-logo" src="" alt="Github Logo" width="32" height="32" hidden>
+		</a>
 	</div>
 	<script src="scripts/canvas.js"></script>
 	<script src="scripts/controls.js"></script>
+	<script type="text/javascript">
+		document.onreadystatechange = function () {
+			if (document.readyState === "complete") {
+				let github_link_logo = document.getElementById("github-link-logo");
+
+				github_link_logo.src = "../github-mark.png";
+				github_link_logo.removeAttribute("hidden");
+			}
+		}
+	</script>
 </body>
 </html>
