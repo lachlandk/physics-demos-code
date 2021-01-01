@@ -1,12 +1,11 @@
 * {
-	box-sizing:			border-box;
-	-webkit-box-sizing:	border-box;
-	-moz-box-sizing:	border-box;
+	box-sizing: border-box;
+	margin: 0; /* to get rid of browsers applying margins by default (very silly) */
 
-	margin: 0; /*to get rid of browsers applying margins by default (very silly)*/
-
-	font-family: "PT Mono", monospace;
+	font-family: "PT Mono", monospace; /* default font */
 }
+
+/* TODO: custom slider */
 
 html, body {
 	height: 100%;
@@ -15,8 +14,7 @@ html, body {
 body {
 	display: flex;
 	flex-flow: column nowrap;
-	justify-content: flex-start;
-	align-items: center;
+	align-items: center; /* TODO: paper background */
 }
 
 #title {
@@ -24,16 +22,17 @@ body {
 	margin: 10px 0;
 }
 
-#canvas-container {
+#canvas-container { /* contains canvas and canvas tooltip */
 	height: 75%;
 	width: 90%;
 	position: relative;
 }
 
-#canvas-tooltip {
+#canvas-tooltip { /* positioned beneath the canvas at top left corner */
 	position: absolute;
 	top: 2px;
 	left: 5px;
+	z-index: -1;
 }
 
 #controls-container {
