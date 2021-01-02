@@ -44,20 +44,10 @@
 		</div>
 		<a id="github-link" href="https://github.com/lachlandk/physics-demos-code/tree/main/sorting-algorithm-simulator" target="_blank">
 			<p id="github-link-tooltip">View the source code on Github</p>
-			<img id="github-link-logo" src="" alt="Github Logo" width="32" height="32" hidden>
+			<img id="github-link-logo" src="" alt="Github Logo" width="32" height="32" loading="lazy">
 		</a>
 	</div>
 	<script src="scripts/canvas.js"></script>
 	<script src="scripts/controls.js"></script>
-	<script type="text/javascript">
-		document.onreadystatechange = function () {
-			if (document.readyState === "complete") {
-				let github_link_logo = document.getElementById("github-link-logo");
-
-				github_link_logo.src = "../github-mark.png";
-				github_link_logo.removeAttribute("hidden");
-			}
-		}
-	</script>
 </body>
 </html>
