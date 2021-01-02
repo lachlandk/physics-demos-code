@@ -2,7 +2,8 @@
 	box-sizing: border-box;
 	margin: 0; /* to get rid of browsers applying margins by default (very silly) */
 
-	font-family: "PT Mono", monospace; /* default font */
+	font-family: "PT Mono", monospace; /* default font properties */
+	font-size: 1.2vw;
 }
 
 /* TODO: custom slider */
@@ -20,6 +21,7 @@ body {
 
 #title {
 	font-family: "Zilla Slab Highlight", monospace;
+	font-size: 3vw;
 	margin: 10px 0;
 }
 
