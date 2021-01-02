@@ -19,6 +19,30 @@ body {
 	align-items: center; /* TODO: paper background */
 }
 
+/*   ----------   Homepage link   ----------   */
+
+#homepage-link {
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-decoration: none;
+	margin: 2px 5px;
+}
+
+#homepage-link:hover {
+	text-decoration: underline;
+}
+
+#homepage-link:active {
+	top: 2px;
+}
+
+#homepage-link:visited {
+	color: black;
+}
+
+/*   ----------   Main content   ----------   */
+
 #title {
 	font-family: "Zilla Slab Highlight", monospace;
 	font-size: 3vw;
@@ -58,6 +82,8 @@ body {
 .sub-controls-container p, label, input { /* vertical spacing between controls */
 	margin: 5px 0;
 }
+
+/*   ----------   GitHub link   ----------   */
 
 #github-link {
 	position: relative;
