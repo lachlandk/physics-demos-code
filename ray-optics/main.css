@@ -54,6 +54,14 @@ body {
 	height: 75%;
 	width: 90%;
 	position: relative;
+	border: 1px solid black;
+	overflow: hidden;
+}
+
+#canvas-container canvas { /* make both canvases appear on top of each other */
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 #canvas-tooltip { /* positioned beneath the canvas at top left corner */

@@ -13,12 +13,13 @@
 	<a id="homepage-link" href="https://physics-demos.js.org" target="_top">&lt;&mdash; Return to homepage</a>
 	<div id="canvas-container">
 		<p id="canvas-tooltip">Drag the object or focal point to interact<br> with the simulation</p>
-		<canvas id="canvas"></canvas>
+		<canvas id="background-canvas"></canvas>
+		<canvas id="event-canvas"></canvas>
 	</div>
 	<div id="controls-container">
 		<div class="sub-controls-container">
 			<label for="surface-type-control">Choose type of lens/mirror:</label>
-			<select id="surface-type-control" oninput="updateSurfaceType();">
+			<select id="surface-type-control">
 				<option value="convex-lens">Convex (converging) lens</option>
 				<option value="concave-lens">Concave (diverging) lens</option>
 				<option value="concave-mirror">Concave (converging) mirror</option>
@@ -28,7 +29,7 @@
 		</div>
 		<div class="sub-controls-container">
 			<label id="focal-length-label" for="focal-length-control"></label>
-			<input id="focal-length-control" type="range" min="50" max="300" value="200" autocomplete=off oninput="update();">
+			<input id="focal-length-control" type="range" min="50" max="300" value="200" autocomplete=off>
 		</div>
 		<div class="sub-controls-container">
 			<p id="object-distance"></p>
