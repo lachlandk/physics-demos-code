@@ -64,13 +64,6 @@ body {
 	left: 0;
 }
 
-#canvas-tooltip { /* positioned beneath the canvas at top left corner */
-	position: absolute;
-	top: 2px;
-	left: 5px;
-	z-index: -1;
-}
-
 #controls-container {
 	width: 90%;
 	display: flex;

@@ -1,5 +1,5 @@
 function Canvas(container){
-	/*   -----------   This class contains the properties and methods of the background-canvas and the event-canvas   ----------   */
+	/*   ----------   This class contains the properties and methods of the background-canvas and the event-canvas   ----------   */
 
 	/*   -----------   Creating the canvases and contexts   ----------   */
 
@@ -94,6 +94,11 @@ function Canvas(container){
 
 		this.background_context.save();
 		this.background_context.clearRect(0, 0, this.background_canvas.width, this.background_canvas.height);
+
+		this.background_context.font = "1.2vw monospace"; // help text
+		this.background_context.fillText("Drag the object or focal points to interact", 6, 16);
+		this.background_context.fillText("with the simulation", 6, 36);
+
 		this.background_context.translate(this.background_canvas.width / 2, this.background_canvas.height / 2);
 
 		this.background_context.beginPath(); // grid
