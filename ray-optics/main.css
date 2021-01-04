@@ -16,7 +16,11 @@ html, body {
 body {
 	display: flex;
 	flex-flow: column nowrap;
-	align-items: center; /* TODO: paper background */
+	align-items: center;
+	background-color: white;
+	background-image: linear-gradient(90deg, transparent 7%, DeepSkyBlue 7%, DeepSkyBlue 7.2%, transparent 7.2%),
+	linear-gradient(#eee .1em, transparent .1em);
+	background-size: 100% 1.7vw;
 }
 
 /*   ----------   Homepage link   ----------   */
@@ -54,6 +58,7 @@ body {
 	height: 75%;
 	width: 90%;
 	position: relative;
+	background: white;
 	border: 1px solid black;
 	overflow: hidden;
 }
