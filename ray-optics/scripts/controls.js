@@ -1,6 +1,6 @@
 function mouseDown(event){
 	// this function handles the mouseDown event in its entirety
-	let boundingRect = canvas.event_canvas.getBoundingClientRect(),
+	const boundingRect = canvas.event_canvas.getBoundingClientRect(),
 		mouseX = (event.clientX - boundingRect.left) * (canvas.event_canvas.width / boundingRect.width) - (canvas.event_canvas.width / 2),
 		mouseY = (event.clientY - boundingRect.top) * (canvas.event_canvas.height / boundingRect.height) - (canvas.event_canvas.height / 2),
 		objectX = canvas.object.x,
@@ -46,16 +46,16 @@ function mouseDown(event){
 
 function mouseDrag(event){
 	// this function runs when the mouse is moved while holding down LMB
-	let boundingRect = canvas.event_canvas.getBoundingClientRect(),
+	const boundingRect = canvas.event_canvas.getBoundingClientRect(),
 		mouseX = (event.clientX - boundingRect.left) * (canvas.event_canvas.width / boundingRect.width) - (canvas.event_canvas.width / 2),
-		mouseY = (event.clientY - boundingRect.top) * (canvas.event_canvas.height / boundingRect.height) - (canvas.event_canvas.height / 2),
-		newX = mouseX - heldX,
-		newY = mouseY - heldY,
-		gridX = Math.round(newX / 100) * 100,
+		mouseY = (event.clientY - boundingRect.top) * (canvas.event_canvas.height / boundingRect.height) - (canvas.event_canvas.height / 2);
+	let newX = mouseX - heldX,
+		newY = mouseY - heldY;
+	const gridX = Math.round(newX / 100) * 100,
 		gridY = Math.round(newY / 100) * 100;
 
 	if (canvas.objectDragging){
-		let minX = -(canvas.event_canvas.width / 2) + 5,
+		const minX = -(canvas.event_canvas.width / 2) + 5,
 			maxX = 0,
 			maxY = -(canvas.event_canvas.height / 2) + 25,
 			minY = (canvas.event_canvas.height / 2) - 25;
@@ -110,7 +110,7 @@ function mouseUp(){
 function updateSurfaceType(){
 	canvas.surfaceType = document.getElementById("surface-type-control").value;
 	canvas.drawBackground();
-	let focalLengthControl = document.getElementById("focal-length-control");
+	const focalLengthControl = document.getElementById("focal-length-control");
 	switch (canvas.surfaceType) { // default parameters
 		case "convex-lens":
 			focalLengthControl.disabled = false;
@@ -144,9 +144,9 @@ function updateSurfaceType(){
 }
 
 function updateFocalLength(){
-	let newFocalLength = (canvas.surfaceType !== "plane-mirror") ? document.getElementById("focal-length-control").value : Infinity;
+	const newFocalLength = (canvas.surfaceType !== "plane-mirror") ? document.getElementById("focal-length-control").value : Infinity;
 	canvas.focalLength = newFocalLength;
-	document.getElementById("focal-length-label").innerHTML = "Focal Length: " + ((newFocalLength.length > 2) ? newFocalLength : newFocalLength + "&nbsp");
+	document.getElementById("focal-length-label").innerHTML = ("Focal Length: " + ((newFocalLength.length > 2) ? newFocalLength : newFocalLength + "&nbsp")).replace(/Infinity/, "&infin;");
 	canvas.eventUpdate();
 }
 
@@ -156,7 +156,7 @@ let heldX,
 	heldY;
 canvas.event_canvas.addEventListener("mousedown", mouseDown);
 window.addEventListener("resize", function(){ // TODO move to canvas.js and fix zoom issue
-	let width = canvas_container.offsetWidth,
+	const width = canvas_container.offsetWidth,
 		height = canvas_container.offsetHeight,
 		pixel_ratio = window.devicePixelRatio;
 	canvas.event_canvas.width = width * pixel_ratio;

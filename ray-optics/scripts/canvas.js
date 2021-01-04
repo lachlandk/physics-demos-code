@@ -3,7 +3,7 @@ function Canvas(container){
 
 	/*   -----------   Creating the canvases and contexts   ----------   */
 
-	let width = container.offsetWidth,
+	const width = container.offsetWidth,
 		height = container.offsetHeight,
 		pixel_ratio = window.devicePixelRatio;
 	this.background_canvas = document.getElementById("background-canvas");
@@ -32,7 +32,7 @@ function Canvas(container){
 		that: this,
 		virtual: false,
 		x: function(){
-			let x = 1 / ((1 / this.that.focalLength) - (1 / (-this.that.object.x)));
+			const x = 1 / ((1 / this.that.focalLength) - (1 / (-this.that.object.x)));
 			switch (this.that.surfaceType) {
 				case "convex-lens":
 				case "concave-lens":
@@ -45,7 +45,7 @@ function Canvas(container){
 			}
 		},
 		y: function(){
-			let y = (this.x() * (-this.that.object.y)) / (-this.that.object.x);
+			const y = (this.x() * (-this.that.object.y)) / (-this.that.object.x);
 			switch (this.that.surfaceType) {
 				case "convex-lens":
 				case "concave-lens":
@@ -478,11 +478,11 @@ function Canvas(container){
 
 	this.updateLabels = function(){
 		this.parameterLabels.u.innerHTML = "Object distance: " + this.parameters.u();
-		this.parameterLabels.v.innerHTML = "Image distance: " + this.parameters.v();
+		this.parameterLabels.v.innerHTML = ("Image distance: " + this.parameters.v()).replace(/Infinity/, "&infin;");
 		this.parameterLabels.h.innerHTML = "Object size: " + this.parameters.h();
-		this.parameterLabels.g.innerHTML = "Image size: " + this.parameters.g();
-		this.parameterLabels.m.innerHTML = "Linear magnification: " + this.parameters.m();
-		this.parameterLabels.type.innerHTML = "Image type: " + this.parameters.type();
+		this.parameterLabels.g.innerHTML = ("Image size: " + this.parameters.g()).replace(/Infinity/, "&infin;");
+		this.parameterLabels.m.innerHTML = ("Linear magnification: " + this.parameters.m()).replace(/Infinity/, "&infin;");
+		this.parameterLabels.type.innerHTML = "Image type: " + this.parameters.type().replace(/Infinity/, "&infin;");
 	};
 
 	this.eventUpdate = function(){
