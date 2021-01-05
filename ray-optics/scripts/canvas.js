@@ -69,6 +69,7 @@ function Canvas(){
 	/*   ----------   References for the labels and functions to calculate values for the labels   -----------   */
 
 	this.parameterLabels = {
+		f: document.getElementById("focal-length"),
 		u: document.getElementById("object-distance"),
 		v: document.getElementById("image-distance"),
 		h: document.getElementById("object-size"),
@@ -79,6 +80,7 @@ function Canvas(){
 
 	this.parameters = {
 		that: this,
+		f: function(){return Math.round(this.that.focalLength)},
 		u: function(){return Math.round(-this.that.object.x)},
 		v: function(){return Math.round(this.that.image.x())},
 		h: function(){return Math.round(-this.that.object.y)},
@@ -489,6 +491,7 @@ function Canvas(){
 	};
 
 	this.updateLabels = function(){
+		this.parameterLabels.f.innerHTML = ("Focal length: " + this.parameters.f()).replace(/Infinity/, "&infin;");
 		this.parameterLabels.u.innerHTML = "Object distance: " + this.parameters.u();
 		this.parameterLabels.v.innerHTML = ("Image distance: " + this.parameters.v()).replace(/Infinity/, "&infin;");
 		this.parameterLabels.h.innerHTML = "Object size: " + this.parameters.h();

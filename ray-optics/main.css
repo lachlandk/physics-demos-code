@@ -6,7 +6,6 @@
 	font-size: 1.2vw;
 }
 
-/* TODO: custom slider */
 /* TODO: change all px to relative units */
 
 html, body {
@@ -18,8 +17,7 @@ body {
 	flex-flow: column nowrap;
 	align-items: center;
 	background-color: white;
-	background-image: linear-gradient(90deg, transparent 7%, DeepSkyBlue 7%, DeepSkyBlue 7.2%, transparent 7.2%),
-	linear-gradient(#eee .1em, transparent .1em);
+	background-image: linear-gradient(90deg, transparent 7%, DeepSkyBlue 7%, DeepSkyBlue 7.2%, transparent 7.2%), linear-gradient(#eee 0.12vw, transparent 0.12vw);
 	background-size: 100% 1.7vw;
 }
 
@@ -54,7 +52,7 @@ body {
 	margin: 10px 0;
 }
 
-#canvas-container { /* contains canvas and canvas tooltip */
+#canvas-container { /* contains canvases */
 	height: 75%;
 	width: 90%;
 	position: relative;
@@ -86,7 +84,7 @@ body {
 	margin: 0 10px;
 }
 
-.sub-controls-container p, label, input { /* vertical spacing between controls */
+.sub-controls-container p, label, input, select { /* vertical spacing between controls */
 	margin: 5px 0;
 }
 

@@ -1,8 +1,8 @@
 function mouseDown(event){
 	// this function handles the mouseDown event in its entirety
 	const boundingRect = canvas.event_canvas.getBoundingClientRect(),
-		mouseX = (event.clientX - boundingRect.left) * (canvas.event_canvas.width / boundingRect.width) - (canvas.event_canvas.width / 2),
-		mouseY = (event.clientY - boundingRect.top) * (canvas.event_canvas.height / boundingRect.height) - (canvas.event_canvas.height / 2),
+		mouseX = (event.clientX - boundingRect.left) * (canvas.width / boundingRect.width) - (canvas.width / 2),
+		mouseY = (event.clientY - boundingRect.top) * (canvas.height / boundingRect.height) - (canvas.height / 2),
 		objectX = canvas.object.x * canvas.grid_scale,
 		objectY = canvas.object.y * canvas.grid_scale,
 		leftFocalPoint = (canvas.focalLength > 0 ? -canvas.focalLength : canvas.focalLength) * canvas.grid_scale,
@@ -47,18 +47,18 @@ function mouseDown(event){
 function mouseDrag(event){
 	// this function runs when the mouse is moved while holding down LMB
 	const boundingRect = canvas.event_canvas.getBoundingClientRect(),
-		mouseX = (event.clientX - boundingRect.left) * (canvas.event_canvas.width / boundingRect.width) - (canvas.event_canvas.width / 2),
-		mouseY = (event.clientY - boundingRect.top) * (canvas.event_canvas.height / boundingRect.height) - (canvas.event_canvas.height / 2);
+		mouseX = (event.clientX - boundingRect.left) * (canvas.width / boundingRect.width) - (canvas.width / 2),
+		mouseY = (event.clientY - boundingRect.top) * (canvas.height / boundingRect.height) - (canvas.height / 2);
 	let newX = mouseX - heldX,
 		newY = mouseY - heldY;
 	const gridX = Math.round(newX / canvas.grid_size) * canvas.grid_size,
 		gridY = Math.round(newY / canvas.grid_size) * canvas.grid_size;
 
 	if (canvas.objectDragging){
-		const minX = -(canvas.event_canvas.width / 2) + 5,
+		const minX = -(canvas.width / 2) + 5,
 			maxX = 0,
-			maxY = -(canvas.event_canvas.height / 2) + 25,
-			minY = (canvas.event_canvas.height / 2) - 25;
+			maxY = -(canvas.height / 2) + 25,
+			minY = (canvas.height / 2) - 25;
 
 		if ((newX % canvas.grid_size > -10 || newX % canvas.grid_size < -canvas.grid_size + 10) && (Math.abs(newY) % canvas.grid_size < 10 || Math.abs(newY) % canvas.grid_size > canvas.grid_size - 10)){
 			newX = gridX;
@@ -71,30 +71,50 @@ function mouseDrag(event){
 		canvas.eventUpdate();
 	}
 
-	function setFocalPoint(point){
-		// update the focal length slider when the point is moved
-		if (canvas.surfaceType === "convex-lens" || canvas.surfaceType === "concave-mirror"){
-			document.getElementById("focal-length-control").value = -Math.round(point);
-		}
-		if (canvas.surfaceType === "concave-lens" || canvas.surfaceType === "convex-mirror"){
-			document.getElementById("focal-length-control").value = Math.round(point);
-		}
-		updateFocalLength();
-	}
-
 	if (canvas.leftFocalPointDragging){
+		const minX = -(canvas.width / 2) + 5,
+			maxX = 0;
+
 		if (newX % canvas.grid_size > -10 || newX % canvas.grid_size < -canvas.grid_size + 10){
 			newX = gridX;
 		}
-		console.log(canvas.focalLength);
-		setFocalPoint(newX / canvas.grid_scale);
+		newX = (newX < minX) ? minX : ((newX > maxX) ? maxX : newX);
+
+		const newFocalLength = Math.round(newX / canvas.grid_scale);
+		switch (canvas.surfaceType) {
+			case "convex-lens":
+			case "concave-mirror":
+				canvas.focalLength = -newFocalLength;
+				break;
+			case "concave-lens":
+			case "convex-mirror":
+				canvas.focalLength = newFocalLength;
+				break;
+		}
+		canvas.eventUpdate();
 	}
 
 	if (canvas.rightFocalPointDragging){
+		const minX = 0,
+			maxX = (canvas.width / 2) - 5;
+
 		if (newX % canvas.grid_size < 10 || newX % canvas.grid_size > canvas.grid_size - 10){
 			newX = gridX;
 		}
-		setFocalPoint(-newX / canvas.grid_scale);
+		newX = (newX < minX) ? minX : ((newX > maxX) ? maxX : newX);
+
+		const newFocalLength = Math.round(newX / canvas.grid_scale);
+		switch (canvas.surfaceType) {
+			case "convex-lens":
+			case "concave-mirror":
+				canvas.focalLength = newFocalLength;
+				break;
+			case "concave-lens":
+			case "convex-mirror":
+				canvas.focalLength = -newFocalLength;
+				break;
+		}
+		canvas.eventUpdate();
 	}
 }
 
@@ -111,43 +131,27 @@ function mouseUp(){
 function updateSurfaceType(){
 	canvas.surfaceType = document.getElementById("surface-type-control").value;
 	canvas.drawBackground();
-	const focalLengthControl = document.getElementById("focal-length-control");
-	switch (canvas.surfaceType) { // default parameters
+	switch (canvas.surfaceType) {
 		case "convex-lens":
-			focalLengthControl.disabled = false;
-			focalLengthControl.min = 50;
-			focalLengthControl.max = 300;
-			focalLengthControl.value = 200;
+		case "concave-mirror":
+			if (!isFinite(canvas.focalLength)){
+				canvas.focalLength = 200;
+			} else if (canvas.focalLength < 0){
+				canvas.focalLength *= -1;
+			}
 			break;
 		case "concave-lens":
-			focalLengthControl.disabled = false;
-			focalLengthControl.min = -300;
-			focalLengthControl.max = -50;
-			focalLengthControl.value = -200;
-			break;
-		case "concave-mirror":
-			focalLengthControl.disabled = false;
-			focalLengthControl.min = 50;
-			focalLengthControl.max = 300;
-			focalLengthControl.value = 200;
-			break;
 		case "convex-mirror":
-			focalLengthControl.disabled = false;
-			focalLengthControl.min = -300;
-			focalLengthControl.max = -50;
-			focalLengthControl.value = -200;
+			if (!isFinite(canvas.focalLength)){
+				canvas.focalLength = -200;
+			} else if (canvas.focalLength > 0){
+				canvas.focalLength *= -1;
+			}
 			break;
 		case "plane-mirror":
-			focalLengthControl.disabled = true;
+			canvas.focalLength = Infinity;
 			break;
 	}
-	updateFocalLength();
-}
-
-function updateFocalLength(){
-	const newFocalLength = (canvas.surfaceType !== "plane-mirror") ? document.getElementById("focal-length-control").value : Infinity;
-	canvas.focalLength = newFocalLength;
-	document.getElementById("focal-length-label").innerHTML = ("Focal Length: " + ((newFocalLength.length > 2) ? newFocalLength : newFocalLength + "&nbsp")).replace(/Infinity/, "&infin;");
 	canvas.eventUpdate();
 }
 
@@ -166,4 +170,3 @@ window.addEventListener("resize", function() {
 updateSurfaceType();
 
 document.getElementById("surface-type-control").addEventListener("input", updateSurfaceType);
-document.getElementById("focal-length-control").addEventListener("input", updateFocalLength);
