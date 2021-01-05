@@ -33,7 +33,7 @@ function Canvas(){
 	this.focalLength = 200;
 	this.object = {
 		x: -400,
-		y: -100,
+		y: -(this.height / 2) + 25 > -100 ? -(this.height / 2) + 25 : -100,
 	};
 	this.image = {
 		that: this,

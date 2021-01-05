@@ -164,6 +164,11 @@ window.addEventListener("resize", function() {
 	canvas.setHeight(canvas.container.clientHeight);
 	canvas.grid_size = canvas.width / 12;
 	canvas.grid_scale = canvas.grid_size / 100;
+	if (canvas.object.y < -(canvas.height / 2) + 25) {
+		canvas.object.y = -(canvas.height / 2) + 25;
+	} else if (canvas.object.y > (canvas.height / 2) - 25) {
+		canvas.object.y = (canvas.height / 2) - 25;
+	}
 	canvas.drawBackground();
 	canvas.drawRays();
 });
