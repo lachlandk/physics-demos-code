@@ -3,9 +3,9 @@ function mouseDown(event){
 	const boundingRect = canvas.event_canvas.getBoundingClientRect(),
 		mouseX = (event.clientX - boundingRect.left) * (canvas.event_canvas.width / boundingRect.width) - (canvas.event_canvas.width / 2),
 		mouseY = (event.clientY - boundingRect.top) * (canvas.event_canvas.height / boundingRect.height) - (canvas.event_canvas.height / 2),
-		objectX = canvas.object.x,
-		objectY = canvas.object.y,
-		leftFocalPoint = canvas.focalLength > 0 ? -canvas.focalLength : canvas.focalLength,
+		objectX = canvas.object.x * canvas.grid_scale,
+		objectY = canvas.object.y * canvas.grid_scale,
+		leftFocalPoint = (canvas.focalLength > 0 ? -canvas.focalLength : canvas.focalLength) * canvas.grid_scale,
 		rightFocalPoint = -leftFocalPoint;
 
 	function hitDetect(pointX, pointY, type){
@@ -51,8 +51,8 @@ function mouseDrag(event){
 		mouseY = (event.clientY - boundingRect.top) * (canvas.event_canvas.height / boundingRect.height) - (canvas.event_canvas.height / 2);
 	let newX = mouseX - heldX,
 		newY = mouseY - heldY;
-	const gridX = Math.round(newX / 100) * 100,
-		gridY = Math.round(newY / 100) * 100;
+	const gridX = Math.round(newX / canvas.grid_size) * canvas.grid_size,
+		gridY = Math.round(newY / canvas.grid_size) * canvas.grid_size;
 
 	if (canvas.objectDragging){
 		const minX = -(canvas.event_canvas.width / 2) + 5,
@@ -60,14 +60,14 @@ function mouseDrag(event){
 			maxY = -(canvas.event_canvas.height / 2) + 25,
 			minY = (canvas.event_canvas.height / 2) - 25;
 
-		if ((newX % 100 > -10 || newX % 100 < -90) && (Math.abs(newY) % 100 < 10 || Math.abs(newY) % 100 > 90)){
+		if ((newX % canvas.grid_size > -10 || newX % canvas.grid_size < -canvas.grid_size + 10) && (Math.abs(newY) % canvas.grid_size < 10 || Math.abs(newY) % canvas.grid_size > canvas.grid_size - 10)){
 			newX = gridX;
 			newY = gridY;
 		}
 		newX = (newX < minX) ? minX : ((newX > maxX) ? maxX : newX); // if newX < minX, {minX} else {if newX > maxX, {maxX} else {new X}}
 		newY = (newY > minY) ? minY : ((newY < maxY) ? maxY : newY);
-		canvas.object.x = newX;
-		canvas.object.y = newY;
+		canvas.object.x = Math.round(newX / canvas.grid_scale);
+		canvas.object.y = Math.round(newY / canvas.grid_scale);
 		canvas.eventUpdate();
 	}
 
@@ -83,17 +83,18 @@ function mouseDrag(event){
 	}
 
 	if (canvas.leftFocalPointDragging){
-		if (newX % 100 > -10 || newX % 100 < -90){
+		if (newX % canvas.grid_size > -10 || newX % canvas.grid_size < -canvas.grid_size + 10){
 			newX = gridX;
 		}
-		setFocalPoint(newX);
+		console.log(canvas.focalLength);
+		setFocalPoint(newX / canvas.grid_scale);
 	}
 
 	if (canvas.rightFocalPointDragging){
-		if (newX % 100 < 10 || newX % 100 > 90){
+		if (newX % canvas.grid_size < 10 || newX % canvas.grid_size > canvas.grid_size - 10){
 			newX = gridX;
 		}
-		setFocalPoint(-newX);
+		setFocalPoint(-newX / canvas.grid_scale);
 	}
 }
 
@@ -150,21 +151,15 @@ function updateFocalLength(){
 	canvas.eventUpdate();
 }
 
-const canvas_container = document.getElementById("canvas-container")
-const canvas = new Canvas(canvas_container)
+const canvas = new Canvas()
 let heldX,
 	heldY;
 canvas.event_canvas.addEventListener("mousedown", mouseDown);
-window.addEventListener("resize", function(){ // TODO move to canvas.js and fix zoom issue
-	const width = canvas_container.offsetWidth,
-		height = canvas_container.offsetHeight,
-		pixel_ratio = window.devicePixelRatio;
-	canvas.event_canvas.width = width * pixel_ratio;
-	canvas.event_canvas.height = height * pixel_ratio;
-	canvas.event_context.scale(pixel_ratio, pixel_ratio);
-	canvas.background_canvas.width = width * pixel_ratio;
-	canvas.background_canvas.height = height * pixel_ratio;
-	canvas.background_context.scale(pixel_ratio, pixel_ratio);
+window.addEventListener("resize", function() {
+	canvas.setWidth(canvas.container.clientWidth);
+	canvas.setHeight(canvas.container.clientHeight);
+	canvas.grid_size = canvas.width / 12;
+	canvas.grid_scale = canvas.grid_size / 100;
 	canvas.drawBackground();
 	canvas.drawRays();
 });
