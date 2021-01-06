@@ -118,7 +118,7 @@ function mouseDrag(event){
 	}
 }
 
-function mouseUp(){
+function mouseUp(event){
 	// cancel the dragging event when no longer holding LMB
 	canvas.event_canvas.addEventListener("mousedown", mouseDown);
 	window.removeEventListener("mouseup", mouseUp);
@@ -126,10 +126,10 @@ function mouseUp(){
 	canvas.leftFocalPointDragging = false;
 	canvas.rightFocalPointDragging = false;
 	window.removeEventListener("mousemove", mouseDrag);
-	mouseMove();
+	mouseOver(event);
 }
 
-function mouseMove(event){
+function mouseOver(event){
 	// detect if mouse is hovering over a draggable point to change cursor
 	const boundingRect = canvas.event_canvas.getBoundingClientRect(),
 		mouseX = (event.clientX - boundingRect.left) * (canvas.width / boundingRect.width) - (canvas.width / 2),
@@ -186,7 +186,7 @@ const canvas = new Canvas()
 let heldX,
 	heldY;
 canvas.event_canvas.addEventListener("mousedown", mouseDown);
-canvas.event_canvas.addEventListener("mousemove", mouseMove);
+canvas.event_canvas.addEventListener("mousemove", mouseOver);
 window.addEventListener("resize", function() {
 	canvas.setWidth(canvas.container.clientWidth);
 	canvas.setHeight(canvas.container.clientHeight);
