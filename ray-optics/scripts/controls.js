@@ -28,6 +28,7 @@ function mouseDown(event){
 					canvas.rightFocalPointDragging = true;
 					break;
 			}
+			canvas.event_canvas.style.cursor = "grabbing";
 			window.addEventListener("mousemove", mouseDrag);
 		}
 	}
@@ -41,7 +42,6 @@ function mouseDown(event){
 	window.addEventListener("mouseup", mouseUp);
 }
 
-// TODO: add pointer mouse when mouse over object
 // TODO: touch functionality, make handles bigger for ease of use on touch devices
 
 function mouseDrag(event){
@@ -119,13 +119,40 @@ function mouseDrag(event){
 }
 
 function mouseUp(){
-	// cancel the mousemove event when no longer holding LMB
+	// cancel the dragging event when no longer holding LMB
 	canvas.event_canvas.addEventListener("mousedown", mouseDown);
 	window.removeEventListener("mouseup", mouseUp);
 	canvas.objectDragging = false;
 	canvas.leftFocalPointDragging = false;
 	canvas.rightFocalPointDragging = false;
 	window.removeEventListener("mousemove", mouseDrag);
+	mouseMove();
+}
+
+function mouseMove(event){
+	// detect if mouse is hovering over a draggable point to change cursor
+	const boundingRect = canvas.event_canvas.getBoundingClientRect(),
+		mouseX = (event.clientX - boundingRect.left) * (canvas.width / boundingRect.width) - (canvas.width / 2),
+		mouseY = (event.clientY - boundingRect.top) * (canvas.height / boundingRect.height) - (canvas.height / 2),
+		objectX = canvas.object.x * canvas.grid_scale,
+		objectY = canvas.object.y * canvas.grid_scale,
+		focalLength = canvas.focalLength * canvas.grid_scale;
+
+	function hasMouseOver(pointX, pointY){
+		const dx = mouseX - pointX,
+			dy = mouseY - pointY;
+		return ((dx**2 + dy**2) <= 100);
+	}
+
+	if (canvas.objectDragging || canvas.leftFocalPointDragging || canvas.rightFocalPointDragging) {
+		canvas.event_canvas.style.cursor = "grabbing";
+	} else {
+		if (hasMouseOver(objectX, objectY) || hasMouseOver(focalLength, 0) || hasMouseOver(-focalLength, 0)) {
+			canvas.event_canvas.style.cursor = "grab";
+		} else {
+			canvas.event_canvas.style.cursor = "auto";
+		}
+	}
 }
 
 function updateSurfaceType(){
@@ -159,6 +186,7 @@ const canvas = new Canvas()
 let heldX,
 	heldY;
 canvas.event_canvas.addEventListener("mousedown", mouseDown);
+canvas.event_canvas.addEventListener("mousemove", mouseMove);
 window.addEventListener("resize", function() {
 	canvas.setWidth(canvas.container.clientWidth);
 	canvas.setHeight(canvas.container.clientHeight);
