@@ -203,3 +203,36 @@ window.addEventListener("resize", function() {
 updateSurfaceType();
 
 document.getElementById("surface-type-control").addEventListener("input", updateSurfaceType);
+
+function displayDocumentation() {
+	document.getElementById("documentation-nav").style.transition = "top 0.3s";
+	document.getElementById("documentation-container").style.transition = "top 0.6s";
+	document.getElementById("documentation-banner").style.boxShadow = "0 0 0.5em #888";
+	document.getElementById("documentation-nav").style.top = "0";
+	document.getElementById("documentation-container").style.top = "0";
+	setTimeout(function() {
+		document.getElementById("documentation-nav").style.visibility = "hidden";
+		document.getElementById("documentation-nav").style.transition = "0s";
+	}, 300);
+	setTimeout(function() {
+		document.getElementById("documentation-container").style.transition = "0s";
+	}, 600);
+}
+
+function hideDocumentation() {
+	document.getElementById("documentation-nav").style.transition = "top 0.3s";
+	document.getElementById("documentation-container").style.transition = "top 0.6s";
+	document.getElementById("documentation-nav").style.visibility = "visible";
+	document.getElementById("documentation-container").style.top = "100vh";
+	document.getElementById("documentation-nav").style.top = "-4em";
+	setTimeout(function() {
+		document.getElementById("documentation-nav").style.transition = "0s";
+	}, 300);
+	setTimeout(function() {
+		document.getElementById("documentation-banner").style.boxShadow = "none";
+		document.getElementById("documentation-container").style.transition = "0s";
+	}, 600);
+}
+
+document.getElementById("documentation-nav").addEventListener("click", displayDocumentation);
+document.getElementById("documentation-banner").addEventListener("click", hideDocumentation);

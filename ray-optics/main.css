@@ -8,11 +8,13 @@
 
 /* TODO: change all px to relative units */
 
-html, body {
-	height: 100%;
+html {
+	scroll-behavior: smooth;
 }
 
 body {
+	height: 100%;
+	overflow: hidden;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
@@ -25,11 +27,10 @@ body {
 
 #homepage-link {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 2px;
+	left: 5px;
 	text-decoration: none;
 	color: black;
-	margin: 2px 5px;
 }
 
 #homepage-link:hover {
@@ -37,7 +38,7 @@ body {
 }
 
 #homepage-link:active {
-	top: 2px;
+	top: 4px;
 }
 
 #homepage-link:visited {
@@ -46,20 +47,26 @@ body {
 
 /*   ----------   Main content   ----------   */
 
+header {
+	height: 10vh;
+	min-height: 4vw;
+	display:flex;
+	align-items: center;
+}
+
 #title {
 	font-family: "Zilla Slab Highlight", monospace;
 	font-size: 3vw;
-	margin: 10px 0;
 }
 
 #canvas-container { /* contains canvases */
-	height: 75%;
+	height: 75vh;
+	min-height: 20vw;
 	width: 90%;
 	position: relative;
 	background: white;
 	border: 1px solid black;
 	overflow: hidden;
-	min-height: 20vw;
 }
 
 #canvas-container canvas { /* make both canvases appear on top of each other */
@@ -69,12 +76,12 @@ body {
 }
 
 #controls-container {
+	height: 15vh;
 	width: 90%;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: flex-start;
-	margin: 10px 0;
-	position: relative;
+	padding: 10px 0;
 }
 
 .sub-controls-container {
@@ -89,11 +96,92 @@ body {
 	margin: 5px 0;
 }
 
+/*  ----------   Documentation   ----------   */
+
+#documentation-nav {
+	height: 4em;
+	width: 4em;
+	position: absolute;
+	top: -4em;
+	right: 1vw;
+	transition-timing-function: linear;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	background: rgb(0, 144, 180);
+	box-shadow: 0 0 0.5em #888;
+	cursor: pointer;
+}
+
+#documentation-nav img {
+	width: 100%;
+	height: 100%;
+}
+
+#documentation-container {
+	height: 100vh;
+	width: 100%;
+	background: white;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	position: absolute;
+	top: 100vh;
+	left: 0;
+	transition-timing-function: ease-out;
+}
+
+#documentation-banner {
+	min-height: 10vh;
+	width: 100%;
+	background: rgb(0, 144, 180);
+	color: rgb(0, 58, 68);
+	z-index: 1;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: baseline;
+	cursor: pointer;
+}
+
+#documentation-banner h1 {
+	padding-left: 5%;
+	font-family: serif;
+	font-size: 3vw;
+}
+
+#documentation-banner span {
+	padding-left: 0.5em;
+	opacity: 75%;
+	font-family: serif;
+	font-size: 1.5vw;
+}
+
+#documentation {
+	height: 90vh;
+	width: 100%;
+	padding: 5vh 5%;
+	overflow: auto;
+	visibility: hidden; /* hidden until MathJax is finished processing */
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+#documentation p {
+	font-family: serif;
+}
+
+#documentation img {
+	align-items: center;
+	margin: auto;
+}
+
 /*   ----------   GitHub link   ----------   */
 
 #github-link {
 	position: relative;
-	margin-left: auto;
+	width: 32px;
+	height: 32px;
 }
 
 #github-link:active {
