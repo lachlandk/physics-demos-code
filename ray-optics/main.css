@@ -146,14 +146,14 @@ header {
 
 #documentation-banner h1 {
 	padding-left: 5%;
-	font-family: serif;
+	font-family: "Lato", serif;
 	font-size: 3vw;
 }
 
 #documentation-banner span {
 	padding-left: 0.5em;
 	opacity: 75%;
-	font-family: serif;
+	font-family: "Lato", serif;
 	font-size: 1.5vw;
 }
 
@@ -168,7 +168,7 @@ header {
 }
 
 #documentation p {
-	font-family: serif;
+	font-family: "Noto Serif", serif;
 }
 
 #documentation img {
