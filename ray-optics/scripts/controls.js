@@ -187,6 +187,7 @@ let heldX,
 	heldY;
 canvas.event_canvas.addEventListener("mousedown", mouseDown);
 canvas.event_canvas.addEventListener("mousemove", mouseOver);
+canvas.event_canvas.addEventListener("contextmenu", function(event){event.preventDefault();});
 window.addEventListener("resize", function() {
 	canvas.setWidth(canvas.container.clientWidth);
 	canvas.setHeight(canvas.container.clientHeight);
