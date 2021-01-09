@@ -205,10 +205,11 @@ updateSurfaceType();
 document.getElementById("surface-type-control").addEventListener("input", updateSurfaceType);
 
 function displayDocumentation() {
-	document.getElementById("documentation-nav").style.transition = "top 0.3s";
+	document.getElementById("documentation-nav").style.transition = "top 0.3s, height 0.3s";
 	document.getElementById("documentation-container").style.transition = "top 0.6s";
 	document.getElementById("documentation-banner").style.boxShadow = "0 0 0.5em #888";
 	document.getElementById("documentation-nav").style.top = "0";
+	document.getElementById("documentation-nav").style.height = "0";
 	document.getElementById("documentation-container").style.top = "0";
 	setTimeout(function() {
 		document.getElementById("documentation-nav").style.visibility = "hidden";
@@ -220,11 +221,12 @@ function displayDocumentation() {
 }
 
 function hideDocumentation() {
-	document.getElementById("documentation-nav").style.transition = "top 0.3s";
+	document.getElementById("documentation-nav").style.transition = "top 0.3s, height 0.3s";
 	document.getElementById("documentation-container").style.transition = "top 0.6s";
 	document.getElementById("documentation-nav").style.visibility = "visible";
 	document.getElementById("documentation-container").style.top = "100vh";
 	document.getElementById("documentation-nav").style.top = "-4em";
+	document.getElementById("documentation-nav").style.height = "5em";
 	setTimeout(function() {
 		document.getElementById("documentation-nav").style.transition = "0s";
 	}, 300);
