@@ -8,13 +8,8 @@
 
 /* TODO: change all px to relative units */
 
-html {
-	scroll-behavior: smooth;
-}
-
 body {
 	height: 100%;
-	overflow: hidden;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
@@ -98,32 +93,31 @@ header {
 
 /*  ----------   Documentation   ----------   */
 
-#documentation-nav {
-	height: 5em;
-	width: 4em;
+#documentation-button {
+	height: 5vw;
+	width: 5vw;
 	overflow: hidden;
 	position: absolute;
-	top: -4em;
+	bottom: 0;
 	right: 1vw;
 	transition-timing-function: linear;
-	display: flex;
-	flex-flow: row nowrap;
 	background: rgb(0, 144, 180);
 	box-shadow: 0 0 0.5em #888;
-	border-radius: 0.25em;
+	border-radius: 0.25em 0.25em 0 0;
 	cursor: pointer;
 }
 
-#documentation-nav img {
-	width: 4em;
-	height: 4em;
+#documentation-button img {
+	width: 5vw;
+	height: 5vw;
 }
 
 #documentation-container {
-	height: 100vh;
+	height: 0;
 	width: 100%;
+	overflow: hidden;
 	position: absolute;
-	top: 100vh;
+	bottom: 0;
 	left: 0;
 	transition-timing-function: ease-out;
 	display: flex;
@@ -136,6 +130,7 @@ header {
 	min-height: 10vh;
 	width: 100%;
 	background: rgb(0, 144, 180);
+	box-shadow: 0 0 0.5em #888;
 	color: rgb(0, 58, 68);
 	z-index: 1;
 	display: flex;
