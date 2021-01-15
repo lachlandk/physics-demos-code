@@ -6,10 +6,8 @@
 	font-size: 1.2vw;
 }
 
-/* TODO: change all px to relative units */
-
 body {
-	height: 100%;
+	overflow: auto;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
@@ -22,8 +20,8 @@ body {
 
 #homepage-link {
 	position: absolute;
-	top: 2px;
-	left: 5px;
+	top: 0.25vw;
+	left: 1vw;
 	text-decoration: none;
 	color: black;
 }
@@ -33,7 +31,7 @@ body {
 }
 
 #homepage-link:active {
-	top: 4px;
+	top: 0.35vw;
 }
 
 #homepage-link:visited {
@@ -60,7 +58,7 @@ header {
 	width: 90%;
 	position: relative;
 	background: white;
-	border: 1px solid black;
+	border: 0.1vw solid black;
 	overflow: hidden;
 }
 
@@ -76,7 +74,7 @@ header {
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: flex-start;
-	padding: 10px 0;
+	padding: 0.75vw 0;
 }
 
 .sub-controls-container {
@@ -84,11 +82,11 @@ header {
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: flex-start;
-	margin: 0 10px;
+	margin: 0 0.75vw;
 }
 
-.sub-controls-container p, label, input, select { /* vertical spacing between controls */
-	margin: 5px 0;
+.sub-controls-container > * { /* vertical spacing between controls */
+	margin: 0.4vw 0;
 }
 
 /*  ----------   Documentation   ----------   */
@@ -97,13 +95,13 @@ header {
 	height: 5vw;
 	width: 5vw;
 	overflow: hidden;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	right: 1vw;
 	transition-timing-function: linear;
 	background: rgb(0, 144, 180);
-	box-shadow: 0 0 0.5em #888;
-	border-radius: 0.25em 0.25em 0 0;
+	box-shadow: 0 0 0.6vw #888;
+	border-radius: 0.3vw 0.3vw 0 0;
 	cursor: pointer;
 }
 
@@ -116,7 +114,7 @@ header {
 	height: 0;
 	width: 100%;
 	overflow: hidden;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	transition-timing-function: ease-out;
@@ -127,15 +125,15 @@ header {
 }
 
 #documentation-banner {
-	min-height: 10vh;
+	height: 5vw;
 	width: 100%;
 	background: rgb(0, 144, 180);
-	box-shadow: 0 0 0.5em #888;
+	box-shadow: 0 0 0.6vw #888;
 	color: rgb(0, 58, 68);
 	z-index: 1;
 	display: flex;
 	flex-flow: row nowrap;
-	align-items: baseline;
+	align-items: center;
 	cursor: pointer;
 }
 
@@ -146,8 +144,8 @@ header {
 }
 
 #documentation-banner span {
-	padding-left: 0.5em;
 	opacity: 75%;
+	font-weight: normal;
 	font-family: "Lato", serif;
 	font-size: 1.5vw;
 }
