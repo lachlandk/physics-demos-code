@@ -1,0 +1,30 @@
+* {
+	box-sizing:         border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+
+	margin: 0; /*to get rid of browsers applying margins by default (very silly)*/
+}
+
+html, body {
+	height: 100%; /* fill whole page */
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#simulation-area {
+  flex: 1 0;
+  background: black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+#simulation-area > .container {
+  width: 50%;
+}
+
+#title-container {
+  flex: 0 0;
+  background: red;
+}
