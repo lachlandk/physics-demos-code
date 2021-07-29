@@ -1,2 +1,5 @@
 # Jetbrains IDE Settings
 .idea/
+
+# Node.js
+node_modules/
