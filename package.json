@@ -1,0 +1,27 @@
+{
+	"name": "physics-demos-code",
+	"version": "1.0.0",
+	"description": "Collection of physics simulations written for the web",
+	"type": "module",
+	"workspaces": [
+		"phasors"
+	],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lachlandk/physics-demos-code.git"
+	},
+	"author": "Lachlan Dufort-Kennett",
+	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/lachlandk/physics-demos-code/issues"
+	},
+	"homepage": "https://github.com/lachlandk/physics-demos-code#readme",
+	"devDependencies": {
+		"webpack": "^5.46.0",
+		"webpack-cli": "^4.7.2",
+		"webpack-dev-server": "^3.11.2"
+	}
+}
