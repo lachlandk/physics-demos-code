@@ -1,0 +1,19 @@
+{
+	"name": "phasors",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"type": "module",
+	"sideEffects": false,
+	"scripts": {
+		"build": "webpack --config ../webpack.dev.js",
+		"watch": "webpack --watch --config ../webpack.dev.js",
+		"start": "webpack serve --open --config ../webpack.dev.js",
+		"dist": "webpack --config ../webpack.prod.js"
+	},
+	"author": "Lachlan Dufort-Kennett",
+	"license": "GPL-3.0-or-later",
+	"dependencies": {
+		"@lachlandk/pulsar": "^0.0.2"
+	}
+}
