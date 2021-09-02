@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+
+* {
+	box-sizing: border-box;
+	margin: 0; /* to get rid of browsers applying margins by default (very silly) */
+
+	font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+	background:
+			repeating-linear-gradient(to left, #FFF0 0%, #FFF0 6%, hsla(0, 0%, 100%, 0.1) 7.5%),
+			repeating-linear-gradient(to left, #0000 0%, #0000 4%, hsla(0, 0%, 0%, 0.025) 4.5%),
+			repeating-linear-gradient(to left, #FFF0 0%, #FFF0 1.5%, hsla(0, 0%, 100%, 0.15) 2.5%),
+			linear-gradient(#BBB 0%, #999 100%);
+	background-size: 100px;
+}
+
+#app {
+	display: block;
+	margin: 0 1vw;
+}
+
+#oscillator-scroll-area {
+	height: 53vh;
+	margin: 1vh 0;
+	border: 5px #333333 solid;
+	box-shadow: 0 0 5px 0 #333;
+	overflow-y: scroll;
+	padding-top: 1vh;
+}
+
+.oscillator-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	height: 23vh;
+	margin: 0 0.5vw 1vh 0.5vw;
+	border: 5px #333 solid;
+	box-shadow: 0 0 5px 0 #333;
+}
+
+.oscillator-controls {
+	margin-left: 2em;
+	flex: 1 0 20em;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-around;
+}
+
+.inline-oscillator-controls {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.inline-oscillator-controls > * {
+	flex: 1;
+}
+
+.phasor, .wave {
+	height: calc(100% - 20px);
+	position: relative;
+	margin: 10px;
+	box-shadow: inset 0 0 5px 0 #000,
+		0 0 0 5px #333
+}
+
+.phasor {
+	flex: 0 1;
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+.wave {
+	flex: 1 1 60%;
+	min-width: 0;
+}
+
+.phasor div {
+	aspect-ratio: 1/1;
+}
+
+.oscillator-button-bar {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+	margin: 0.5vh 0.25vw;
+}
+
+#resultant-oscillator {
+	height: 35vh;
+	margin: 0;
+}
+
+#resultant-oscillator button {
+	font-size: 1em;
+}
+
+#header-container {
+	height: 10vh;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+}
+
+#header-container button {
+	margin-left: 0.5em;
+	padding: 0 0.5em;
+	font-size: 1.5em;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	width: 60%;
+	background: transparent;
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	box-shadow: 0 0 1px 0 #000;
+	border: 1px solid #000;
+	height: 2em;
+	width: 1em;
+	background: #333;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -1em;
+}
+
+input[type=range]::-moz-range-thumb {
+	box-shadow: 0 0 1px 0 #000;
+	border: 1px solid #000;
+	height: 2em;
+	width: 1em;
+	background: #333;
+	cursor: pointer;
+	border-radius: 0;
+}
+
+input[type=range]::-ms-thumb {
+	box-shadow: 0 0 1px 0 #000;
+	border: 1px solid #000;
+	height: 2em;
+	width: 1em;
+	background: #333;
+	cursor: pointer;
+}
+
+input[type=range]:hover::-webkit-slider-thumb {
+	background: #222;
+}
+
+input[type=range]:hover::-moz-range-thumb {
+	background: #222;
+}
+
+input[type=range]:hover::-ms-thumb {
+	background: #222;
+}
+
+input[type=range]:active::-webkit-slider-thumb {
+	box-shadow: 0 0 5px 0 #000;
+}
+
+input[type=range]:active::-moz-range-thumb {
+	box-shadow: 0 0 5px 0 #000;
+}
+
+input[type=range]:active::-ms-thumb {
+	box-shadow: 0 0 5px 0 #000;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 0.25em;
+	cursor: pointer;
+	background: #000;
+	border: 0;
+}
+
+input[type=range]::-moz-range-track {
+	width: 100%;
+	height: 0.25em;
+	cursor: pointer;
+	background: #000;
+	border: 0;
+}
+
+input[type=range]::-ms-track {
+	width: 100%;
+	height: 0.25em;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+	background: #000;
+	border: 0;
+}
+
+input[type=range]::-ms-fill-upper {
+	background: #000;
+	border: 0;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+	box-shadow: 0 0 1px #000;
+}
+
+input[type=range]:focus::-moz-range-track {
+	box-shadow: 0 0 1px #000;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+	box-shadow: 0 0 1px #000;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+	box-shadow: 0 0 1px #000;
+}
