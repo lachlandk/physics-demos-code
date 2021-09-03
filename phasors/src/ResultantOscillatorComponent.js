@@ -35,8 +35,8 @@ export class ResultantOscillatorComponent extends HTMLElement {
 			yLims: [-5, 5]
 		});
 		this.phasor.addData("phasor-x-component", [
-			[0, t => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.cos((2*Math.PI*osc.frequency*t)-osc.phase), 0), t => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.cos((2*Math.PI*osc.frequency*t)-osc.phase), 0)],
-			[0, 0, (x, t) => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.sin((2*Math.PI*osc.frequency*t)-osc.phase), 0)]
+			[0, t => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.cos((2*Math.PI*osc.frequency*t)+osc.phase), 0), t => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.cos((2*Math.PI*osc.frequency*t)+osc.phase), 0)],
+			[0, 0, (x, t) => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.sin((2*Math.PI*osc.frequency*t)+osc.phase), 0)]
 		], {
 			traceColour: "red",
 			markerStyle: "arrow",
@@ -44,8 +44,8 @@ export class ResultantOscillatorComponent extends HTMLElement {
 			visibility: false
 		});
 		this.phasor.addData("resultant-phasor", [
-			[0, t => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.cos((2*Math.PI*osc.frequency*t)-osc.phase), 0)],
-			[0, (x, t) => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.sin((2*Math.PI*osc.frequency*t)-osc.phase), 0)]
+			[0, t => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.cos((2*Math.PI*osc.frequency*t)+osc.phase), 0)],
+			[0, (x, t) => this.app.activeOscillators.reduce((acc, osc) => acc + osc.amplitude*Math.sin((2*Math.PI*osc.frequency*t)+osc.phase), 0)]
 		], {
 			traceColour: "yellow",
 			markerColour: "yellow",
@@ -75,6 +75,7 @@ export class ResultantOscillatorComponent extends HTMLElement {
 				oscillator.show();
 			}
 		});
+		// TODO: x-components button doesn't work together with show/hide all
 		this.querySelector("#show-x-components-button").addEventListener("click", event => {
 			if (event.target.querySelector("span").innerText === "Show") {
 				event.target.querySelector("span").innerText = "Hide";

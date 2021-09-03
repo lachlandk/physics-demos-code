@@ -55,8 +55,8 @@ export class OscillatorComponent extends HTMLElement {
 			yLims: [-3, 3]
 		});
 		this.phasor.addData("phasor-x-component", [
-			[0, t => this.amplitude*Math.cos((2*Math.PI*this.frequency*t)-this.phase), t => this.amplitude*Math.cos((2*Math.PI*this.frequency*t)-this.phase)],
-			[0, 0, (x, t) => this.amplitude*Math.sin((2*Math.PI*this.frequency*t)-this.phase)]
+			[0, t => this.amplitude*Math.cos((2*Math.PI*this.frequency*t)+this.phase), t => this.amplitude*Math.cos((2*Math.PI*this.frequency*t)+this.phase)],
+			[0, 0, (x, t) => this.amplitude*Math.sin((2*Math.PI*this.frequency*t)+this.phase)]
 		], {
 			traceColour: "red",
 			markerStyle: "arrow",
@@ -64,8 +64,8 @@ export class OscillatorComponent extends HTMLElement {
 			visibility: false
 		});
 		this.phasor.addData("phasor", [
-			[0, t => this.amplitude*Math.cos((2*Math.PI*this.frequency*t)-this.phase)],
-			[0, (x, t) => this.amplitude*Math.sin((2*Math.PI*this.frequency*t)-this.phase)]
+			[0, t => this.amplitude*Math.cos((2*Math.PI*this.frequency*t)+this.phase)],
+			[0, (x, t) => this.amplitude*Math.sin((2*Math.PI*this.frequency*t)+this.phase)]
 		], {
 			traceColour: "yellow",
 			markerColour: "yellow",
